@@ -1,0 +1,52 @@
+server:
+  port: 6888
+
+spring:
+  datasource:
+    druid:
+      web-stat-filter:
+        enabled: true
+      stat-view-servlet:
+        enabled: true
+        allow:
+        url-pattern: /druid/*
+        login-username: root
+        login-password: root
+      filter:
+        stat:
+          enabled: true
+          log-slow-sql: true
+          slow-sql-millis: 1000
+          merge-sql: true
+        wall:
+          config:
+            multi-statement-allow: true
+      initial-size: 5
+      min-idle: 10
+      max-active: 20
+      on-fatal-error-max-active: 600000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      max-evictable-idle-time-millis: 900000
+      validation-query: SELECT 1 FROM DUAL
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      url: jdbc:mysql://127.0.0.1:3306/lottery?useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
+      username: root
+      password: root
+      driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis-plus:
+  configuration:
+    # 取消驼峰转换
+    map-underscore-to-camel-case: false
+    call-setters-on-nulls: true
+  global-config:
+    db-config:
+      id-type: assign_id
+
+# 体彩官方接口
+lottery:
+  data:
+    url: https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry?gameNo=85&provinceId=0&isVerify=1&termLimits=1
