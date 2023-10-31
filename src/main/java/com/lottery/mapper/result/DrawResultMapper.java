@@ -1,7 +1,6 @@
 package com.lottery.mapper.result;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.lottery.framework.model.result.DrawResultDO;
 import org.apache.ibatis.annotations.Mapper;
@@ -11,6 +10,7 @@ public interface DrawResultMapper extends BaseMapper<DrawResultDO> {
 
     /**
      * 根据期号获取结果
+     *
      * @param issue 期号
      * @return 结果
      */

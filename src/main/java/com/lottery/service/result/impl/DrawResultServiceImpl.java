@@ -2,7 +2,6 @@ package com.lottery.service.result.impl;
 
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.http.HttpUtil;
-import cn.hutool.json.JSONUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.lottery.framework.model.result.DrawResultDO;
@@ -11,12 +10,10 @@ import com.lottery.service.result.DrawResultService;
 import com.lottery.service.result.dto.DrawResultDTO;
 import com.lottery.service.result.dto.value.pool.PoolDrawDTO;
 import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -42,10 +39,10 @@ public class DrawResultServiceImpl extends ServiceImpl<DrawResultMapper, DrawRes
             // 保存结果
             DrawResultDO drawResultDO = this.getDrawResultDO(poolDrawDTO);
             DrawResultDO dbDrawResultDO = drawResultMapper.selectDrawResult(poolDrawDTO.getLotteryDrawNum());
-            if(Objects.nonNull(dbDrawResultDO)) {
+            if (Objects.nonNull(dbDrawResultDO)) {
                 drawResultDO.setId(dbDrawResultDO.getId());
                 drawResultMapper.updateById(drawResultDO);
-            }else {
+            } else {
                 drawResultMapper.insert(drawResultDO);
             }
 
